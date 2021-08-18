@@ -9,7 +9,7 @@
     {% for product in products %}
           <div class="col-lg-3" >
                 <div class="card box-element">
-                        <img src="{{ product.imageURL}}" alt="" class="index_image">
+                        <img src="/static/{{ product.imageURL}}" alt="" class="index_image">
                         <h1 class='bookname'>{{product.bookname}}</h1>
                     <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>
                         <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>
