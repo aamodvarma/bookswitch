@@ -24,8 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xug5)p4*a1x^6a5)c_h-m*tbaxxdkl(9ycd201nna_ysux48l)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
-ALLOWED_HOSTS = ['139.59.68.238','www.ajrv.me', 'ajrv.me']
+DEBUG = False
+
+ALLOWED_HOSTS = ['139.59.68.238', 'www.ajrv.me', 'ajrv.me']
+
 
 # Application definition
 
@@ -70,25 +72,26 @@ WSGI_APPLICATION = 'bookswitch.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+#if DEBUG:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.sqlite3',
+#            'NAME': BASE_DIR / 'db.sqlite3',
+#        }
+#    }
+#else:
+#
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bookswitch',
+        'USER': 'ajrv',
+        'PASSWORD': '1920051312!(@))%!#!@',
+        'HOST': 'localhost',
+        'PORT': '',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'bookswitch',
-            'USER': 'ajrv',
-            'PASSWORD': '1920051312!(@))%!#!@',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
+}
 
 
 # Password validation
@@ -135,8 +138,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_env'),
+]
+
 MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '/static/')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_env'),]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 
