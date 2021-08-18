@@ -1,9 +1,9 @@
 {% extends 'store/main.html' %}
 {% load static %}
-{% block title %}dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1 class="header">Dashboard Trial {{ product.imageURL }}</h1>
+    <h1 class="header">Dashboard {{ product.imageURL }}</h1>
 
     <div class="row">
     {% for product in products %}
@@ -11,7 +11,6 @@
                 <div class="card box-element" style="background-color: #f5fcff"  >
                         <img src="{{ product.imageURL}}" alt="" class="index_image">
                         <h1 class='bookname'>{{product.bookname}}</h1>
-
                         <span><small  style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner }}</small></span>
                         <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>
                         <!--<p><button  class="btn btn-outline-secondary add-btn" onclick="document.getElementById('id01').style.display='unset'">Delete Item</button></p>!-->
