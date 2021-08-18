@@ -15,6 +15,7 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
+
 #
 #    def __str__(self):
 #        return f"{self.user}"
@@ -24,13 +25,12 @@ class Product(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
     bookname = models.CharField(max_length=100, null=True)
     price = models.IntegerField()
-    image = models.ImageField(blank=True, null=True, upload_to='static/images')
+    image = models.ImageField(blank=True, null=True)
     uploadid = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return str(self.owner)
-        #return self.bookname
-
+        # return self.bookname
 
     @property
     def imageURL(self):
