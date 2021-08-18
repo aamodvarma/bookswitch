@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Custom CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+    <script  type="application/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<script type="text/javascript">
+		var user = '{{request.user}}';
+
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+
+
+	</script>
+
+<body>
+
+  <!--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Store</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
+            {% endif %}
+          </ul>
+
+
+            <div class="d-flex">
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <a class="nav-link active" aria-current="page">{{ user.username}}</a>
+                </ul>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <a class="nav-link active" aria-current="page" href="{% url 'logoutuser' %}">Logout</a>
+                </ul>
+
+
+            {% else %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="nav-link active" aria-current="page" href="{% url 'loginpage' %}">Login</a>
+            </ul>
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Register</a>
+            </ul>
+
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+    </nav>
+    !-->
+
+  <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid" style="float: right">
+        <button style="float: right" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span><img class='menubar' src="https://static.thenounproject.com/png/2292434-200.png"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% block backbutton %}
+
+              {% endblock %}
+         </ul>
+        <div class="d-flex">
+
+        {% if user.is_authenticated %}
+          <div class="oval">
+          <p class='para'>
+              <a   class='active' style="color: white; text-decoration: none; padding: 10px"  >{{user.username}}</a>
+          </p>
+          </div>
+
+
+          <div class="oval">
+          <p class='para'>
+          <a class='active' style="color: white; text-decoration: none; padding: 10px" href="{% url 'logoutuser' %}">logout</a>
+          </p>
+          </div>
+
+
+        {% else %}
+        <div class="oval">
+        <p class='para'>
+            <a  class='active' style="color: white; text-decoration: none ;padding: 10px"  href="{% url 'loginpage' %}">login</a>
+        </p>
+        </div>
+        <div class="oval">
+        <p class='para'>
+            <a  class='active' style="color: white; text-decoration: none ; padding: 10px " href="{% url 'register' %}">Register</a>
+        </p>
+        </div>
+
+        {% endif %}
+
+      </div>
+
+        </div>
+      </div>
+    </nav>
+  <style>
+
+      .menubar{
+          height: 50px;
+          width: 50px;
+      }
+
+     .oval {
+        border-radius: 25px;
+        background: #73AD21;
+        width: 100px;
+        height: 50px;
+        color: white;
+        margin: 10px;
+
+
+}
+     .para{
+         text-align: center;
+         margin-top: 14px;
+     }
+     body{
+         background-color: white;
+     }
+  </style>
+
+
+    <div class="container">
+        {% block content %}
+
+
+
+        {% endblock %}
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+
+</html>

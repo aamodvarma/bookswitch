@@ -1,0 +1,67 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+
+
+{% block title %}Give{% endblock %}
+{% block backbutton %}
+    <div class="backoval">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}"><div> <img style="height:70px; width: 70px; text-align: center" src="https://icons.iconarchive.com/icons/praveen/minimal-outline/256/back-icon.png"></div></a>
+    </li>
+    </div>
+
+{% endblock %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <div class="row" style="justify-content: center; align-content: center; margin-top: 100px">
+        <div class="col-lg-5 ">
+            <div class="box-element"  id="form-wrapper">
+                <form id="form" action='' method=POST enctype=multipart/form-data>
+                    {% csrf_token %}
+
+                    <div id="user-info">
+                        <div class="form-field">
+                           <input required class="form-control" type="text" name="bookname" placeholder="Bookname...">
+                           <!-- <input required class="form-control" type="number" name="grade" min="1" max="12" placeholder="Grade...">
+                       <input id="radio_free" value='0' type="radio" name="Price" onclick="nshow()"> <label>Free</label><br>
+                            <input id="radio_price" type="radio" name="Price" onclick="show()"> <label>Price</label> !-->
+                            <input id="input_price" required class="form-control" type="tel" name="price" max="50" min="0" style="display: unset" placeholder="Price..." >
+                            <label for='file' class="form-control btn btn-primary font-monospace text-center d-block submit-button w-100" name="submit" id="submitForm" style="box-shadow: 0 0 10px;margin-top: 10px;background: #205685;">Select Book Image </label>
+                             <input type="file" name="image" id='file'  style="display: none" required>
+                             <input value="Submit" type="submit" class="form-control btn btn-primary font-monospace text-center d-block submit-button w-100" name="submit" id="submitForm" style="box-shadow: 0 0 10px;margin-top: 10px;background: #205685;" required/>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+        <h1>Please Register <a href="{% url 'home' %}">here</a></h1>
+    {% endif %}
+
+
+    <style>
+
+}
+     .para{
+         text-align: center;
+         margin-top: 14px;
+     }
+    </style>
+    <script>
+
+
+   function show() {
+        document.getElementById('input_price').style.display = 'unset'
+    }
+   function nshow() {
+        document.getElementById('input_price').style.display = 'none'
+    }
+
+    </script>
+
+{% endblock %}
