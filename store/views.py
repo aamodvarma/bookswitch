@@ -127,5 +127,5 @@ def dashboard(request):
     else:
         items = []
         context = {}
-        return render(request, 'store/login.html', context)
+        return redirect ('loginpage')
 
