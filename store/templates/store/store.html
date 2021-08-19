@@ -1,20 +1,24 @@
 {% extends 'store/main.html' %}
 {% load static %}
 
+
 {% block title %}Products{% endblock %}
+
+
+
 {% block content %}
-    <h1 class="header">Products</h1>
 
     <div class="row">
     {% for product in products %}
-          <div class="col-lg-3" >
+          <div class="col-lg-3">
                 <div class="card box-element">
                         <img src="/static/{{ product.imageURL}}" alt="" class="index_image">
                         <h1 class='bookname'>{{product.bookname}}</h1>
                     <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>
+                    <br>
                         <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>
                     <a href="{% url 'productdetails' product.uploadid %}">
-                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:green">Get Book</button>
+                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:#05FF9A">Get Book</button>
                     </a>
                 </div>
           </div>

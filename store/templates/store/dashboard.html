@@ -2,8 +2,11 @@
 {% load static %}
 {% block title %}Dashboard{% endblock %}
 
+{% block heading %}
+    <h1 style="margin-left: 10%">Dashboard</h1>
+
+{% endblock %}
 {% block content %}
-    <h1 class="header">Dashboard {{ product.image}}</h1>
 
     <div class="row">
     {% for product in products %}
@@ -15,7 +18,7 @@
                         <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>
                         <!--<p><button  class="btn btn-outline-secondary add-btn" onclick="document.getElementById('id01').style.display='unset'">Delete Item</button></p>!-->
 
-                        <a  href="{% url 'delete_book' product.uploadid %}"><button  class="btn btn-outline-secondary add-btn">Delete Item</button></a>
+                        <a  href="{% url 'delete_book' product.uploadid %}"><button  class="btn btn-outline-secondary add-btn" style="background: red ">Delete Item</button></a>
                 </div>
 
               <div id="id01" class="modal">
@@ -34,7 +37,7 @@
 
     <div id="bottom">
         <a href="{% url 'give' %}">
-            <button id="bot_open" class="btn btn-primary btn-rounded"><img class="menubar" style="color: white;" src="/static/images/static/images/upload.jpg"><h1 class="btn_text">Add a Book</h1></button>
+            <button id="bot_open" class="btn btn-primary btn-rounded"><img class="menubar" style="color: white;" src="https://www.iconsdb.com/icons/preview/white/upload-3-xxl.png"><h1 class="  btn_text">Add a Book</h1></button>
         </a>
       </div>
 
@@ -64,7 +67,8 @@
         left: 50%;
         bottom: 1%;
         transform: translate(-50%);
-        background-color: #73ad20;
+        background-color: #2a9df4;
+        box-shadow: 4px;
         border-radius: 25px;
         height: 80px;
         border:none;

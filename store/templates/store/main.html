@@ -93,6 +93,8 @@
 
   <nav class="navbar navbar-expand-lg">
       <div class="container-fluid" style="float: right">
+      {% block heading %}
+      {% endblock %}
         <button style="float: right" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span><img class='menubar' src="https://static.thenounproject.com/png/2292434-200.png"></span>
     </button>
@@ -105,14 +107,14 @@
         <div class="d-flex">
 
         {% if user.is_authenticated %}
-          <div class="oval">
+          <div class="oval" style="background: #ececec">
           <p class='para'>
-              <a   class='active' style="color: white; text-decoration: none; padding: 10px"  >{{user.username}}</a>
+              <a   class='active' style="color: black; text-decoration: none; padding: 10px"  >{{user.username}}</a>
           </p>
           </div>
 
 
-          <div class="oval">
+          <div class="oval" style="background: #ff0000 ">
           <p class='para'>
           <a class='active' style="color: white; text-decoration: none; padding: 10px" href="{% url 'logoutuser' %}">logout</a>
           </p>
@@ -147,7 +149,7 @@
 
      .oval {
         border-radius: 25px;
-        background: #73AD21;
+        background: #05ff9a;
         width: 100px;
         height: 50px;
         color: white;
