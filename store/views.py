@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import *
 from .forms import UserForm
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +10,7 @@ from django.contrib import messages
 
 
 # Create your views here.
-
+@csrf_exempt
 def store(request):
     products = Product.objects.all()
 
@@ -17,12 +19,12 @@ def store(request):
 
     return render(request, 'store/store.html', context)
 
-
+@csrf_exempt
 def productdetails(request, uploadid):
     product = Product.objects.get(uploadid=uploadid)
     return render(request, 'store/product.html', {'product': product})
 
-
+@csrf_exempt
 def give(request):
     if request.method == "POST":
         book = Product()
@@ -40,9 +42,9 @@ def give(request):
 
 def home(request):
     context = {}
-    return render(request, 'store/home.html', context)
+    return render(request, 'store/store.html', context)
 
-
+@csrf_exempt
 def loginpage(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -64,12 +66,12 @@ def loginpage(request):
         return render(request, 'store/dashboard.html', context)
 
 
-
+@csrf_exempt
 def logoutuser(request):
     logout(request)
     return redirect('loginpage')
 
-
+@csrf_exempt
 def register(request):
     if not request.user.is_authenticated:
         #    user_form = ProfileForm(request.POST)
@@ -107,7 +109,7 @@ def register(request):
         context = {'products': products}
         return render(request, 'store/dashboard.html', context)
 
-
+@csrf_exempt
 def delete_book(request, uploadid):
     product = Product.objects.filter(uploadid=uploadid)[0]
     if str(product) == str(request.user):
@@ -116,7 +118,7 @@ def delete_book(request, uploadid):
         messages.error(request, ('You do not have to authentication to perform that action'))
     return redirect('dashboard')
 
-
+@csrf_exempt
 def dashboard(request):
     if request.user.is_authenticated:
         products = Product.objects.filter(owner__user=request.user)
