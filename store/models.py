@@ -9,8 +9,8 @@ from django.db.models.signals import post_save  # add this
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100, null=True)
+    phone_number = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return str(self.user)
@@ -47,4 +47,9 @@ class ShippingAddress(models.Model):
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=200, null=True)
-    date_added = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return str(self.customer)
+        #return self.bookname
+
+
+

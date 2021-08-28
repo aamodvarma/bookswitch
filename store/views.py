@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-
 from .models import *
 from .forms import UserForm
 from django.contrib.auth import authenticate, login, logout
@@ -23,6 +22,23 @@ def store(request):
 def productdetails(request, uploadid):
     product = Product.objects.get(uploadid=uploadid)
     return render(request, 'store/product.html', {'product': product})
+
+@csrf_exempt
+def shipping(request):
+    shipping = ShippingAddress()
+    valid = ShippingAddress.objects.filter(customer=request.user.profile)
+    if valid:
+        return redirect('store')
+    else:
+        if request.method == "POST":
+            shipping.customer = request.user.profile
+            shipping.address = request.POST.get('address')
+            shipping.city = request.POST.get('city')
+            shipping.zipcode = request.POST.get('zipcode')
+            shipping.save()
+            return redirect('store')
+        return render(request, 'store/shipping.html')
+
 
 @csrf_exempt
 def give(request):
@@ -85,7 +101,9 @@ def register(request):
         #    context = {'form': user_form}
         #    return render(request, 'store/register.html', context)
         if request.method == 'POST':
+
             form = UserForm(request.POST)
+
             if form.is_valid():
                 form.save()
                 username = form.cleaned_data['username']
@@ -95,6 +113,7 @@ def register(request):
                 profile = Profile()
                 profile.user = user
                 profile.email = user.email
+                profile.phone_number = request.POST.get('phonenumber')
                 profile.save()
                 messages.success(request, ('Your profile was successfully updated!'))
                 return redirect('dashboard')
