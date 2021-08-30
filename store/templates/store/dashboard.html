@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
 
+    {% if products %}
     <div class="row">
     {% for product in products %}
           <div class="col-lg-3" >
@@ -34,6 +35,66 @@
               </div>
           </div>
     {%  endfor %}
+    {% else %}
+
+     <div class="row"   >
+
+        <div class="center" style="" >
+    <div class="bgimg">
+      <div class="middle">
+          <h1>Books You Upload Will Be Here</h1>
+          <hr>
+      </div>
+    </div>
+
+
+
+    <style>
+        /* Set height to 100% for body and html to enable the background image to cover the whole page: */
+    body, html {
+      height: 100%
+    }
+
+.bgimg {
+  /* Background image */
+  /* Full-screen */
+  height: 100%;
+  /* Center the background image */
+  background-position: center;
+
+    margin-top: 20%;
+
+    background-color: white;
+  /* Scale and zoom in the image */
+  background-size: cover;
+  /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+  position: relative;
+  /* Add a white text color to all elements inside the .bgimg container */
+  color: grey;
+  /* Add a font */
+  font-family: "Courier New", Courier, monospace;
+  /* Set the font-size to 25 pixels */
+  font-size: 25px;
+}
+
+
+    /* Position text in the middle */
+    .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* Style the <hr> element */
+    hr {
+      margin: auto;
+      width: 70%;
+    }
+    </style>
+
+    {% endif %}
 
     <div id="bottom">
         <a href="{% url 'give' %}">
@@ -180,5 +241,7 @@
       }
     }
     </style>
+</div>
+</div>
 
 {% endblock %}
