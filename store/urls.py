@@ -11,6 +11,9 @@ urlpatterns = [
     path('logout', views.logoutuser, name="logoutuser"),
     path('register', views.register, name="register"),
     path('shipping', views.shipping, name="shipping"),
+    path('fiction', views.fiction, name="fiction"),
+    path('fiction_slider', views.fiction_slider, name="fiction_slider"),
+    path('academic', views.academic, name="academic"),
     path('delete/<int:uploadid>', views.delete_book, name="delete_book"),
 
 ]

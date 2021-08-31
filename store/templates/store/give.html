@@ -24,12 +24,24 @@
                     <div id="user-info">
                         <div class="form-field">
                            <input required class="form-control" type="text" name="bookname" placeholder="Bookname...">
-                           <!-- <input required class="form-control" type="number" name="grade" min="1" max="12" placeholder="Grade...">
-                       <input id="radio_free" value='0' type="radio" name="Price" onclick="nshow()"> <label>Free</label><br>
-                            <input id="radio_price" type="radio" name="Price" onclick="show()"> <label>Price</label> !-->
+                           <!-- <input required class="form-control" type="number" name="grade" min="1" max="12" placeholder="Grade..."> !-->
                             <input id="input_price" required class="form-control" type="tel" name="price" max="50" min="0" style="display: unset" placeholder="Price..." >
-                            <label for='file' class="form-control btn btn-primary font-monospace text-center d-block submit-button w-100" name="submit" id="submitForm" style="box-shadow: 0 0 10px;margin-top: 10px;background: #205685;">Select Book Image </label>
-                             <input type="file" name="image" id='file'  style="display: none" required>
+                            <div class="wrapper ">
+                               <input type="radio" value="fiction" name="category" id="option-1" checked>
+                               <input type="radio" value='academic' name="category" id="option-2">
+                                   <label for="option-1" class="option option-1">
+                                     <div class="dot"></div>
+                                      <span>Fiction</span>
+                                      </label>
+                                   <label for="option-2" class="option option-2">
+                                     <div class="dot"></div>
+                                      <span>Academic</span>
+                                   </label>
+
+                            </div>
+
+                             <label for='file' class="form-control btn btn-primary font-monospace text-center d-block submit-button w-100" name="submit" id="submitForm" style="box-shadow: 0 0 10px;margin-top: 10px;background: #205685;">Select Book Image </label>
+                             <input type="file" name="image" id='file'  style="display: none">
                              <input value="Submit" type="submit" class="form-control btn btn-primary font-monospace text-center d-block submit-button w-100" name="submit" id="submitForm" style="box-shadow: 0 0 10px;margin-top: 10px;background: #205685;" required/>
 
                         </div>
@@ -45,14 +57,94 @@
 
 
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+    }
 
-}
+    .wrapper{
+      display: inline-flex;
+      background: #fff;
+      height: 100px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 20px 15px;
+    }
+    .wrapper .option{
+      background: #fff;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 0 10px;
+      border: 2px solid lightgrey;
+      transition: all 0.3s ease;
+    }
+    .wrapper .option .dot{
+      height: 20px;
+      width: 20px;
+      background: #d9d9d9;
+      border-radius: 50%;
+      position: relative;
+    }
+    .wrapper .option .dot::before{
+      position: absolute;
+      content: "";
+      top: 4px;
+      left: 4px;
+      width: 12px;
+      height: 12px;
+      background: #205685;
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(1.5);
+      transition: all 0.3s ease;
+    }
+
+    input[type="radio"]{
+      display: none;
+    }
+    #option-1:checked:checked ~ .option-1,
+    #option-2:checked:checked ~ .option-2{
+      border-color: #205685;
+
+        background: #205685;
+    }
+    #option-1:checked:checked ~ .option-1 .dot,
+    #option-2:checked:checked ~ .option-2 .dot{
+      background: #fff;
+    }
+    #option-1:checked:checked ~ .option-1 .dot::before,
+    #option-2:checked:checked ~ .option-2 .dot::before{
+      opacity: 1;
+      transform: scale(1);
+    }
+    .wrapper .option span{
+      font-size: 20px;
+      color: #808080;
+    }
+    #option-1:checked:checked ~ .option-1 span,
+    #option-2:checked:checked ~ .option-2 span{
+      color: #fff;
+    }
+
+
      .para{
          text-align: center;
          margin-top: 14px;
      }
     </style>
+    <!--
     <script>
+
 
 
    function show() {
@@ -63,5 +155,6 @@
     }
 
     </script>
+    !-->
 
 {% endblock %}

@@ -12,11 +12,29 @@ from django.contrib import messages
 @csrf_exempt
 def store(request):
     products = Product.objects.all()
-
-    print(products)
     context = {'products': products}
 
     return render(request, 'store/store.html', context)
+
+@csrf_exempt
+def fiction(request):
+    products = Product.objects.filter(category='fiction')
+    context = {'products': products}
+    return render(request, 'store/fiction.html', context)
+
+@csrf_exempt
+def fiction_slider(request):
+    products = Product.objects.filter(category='fiction')
+    context = {'products': products}
+    return render(request, 'store/fiction_slider.html', context)
+
+@csrf_exempt
+def academic(request):
+    products = Product.objects.filter(category='academic')
+    context = {'products': products}
+    return render(request, 'store/academic.html', context)
+
+
 
 @csrf_exempt
 def productdetails(request, uploadid):
@@ -50,6 +68,7 @@ def give(request):
         book = Product()
         book.owner = request.user.profile
         book.bookname = request.POST.get('bookname')
+        book.category = request.POST.get('category')
         book.price = request.POST.get('price')
         book.uploadid = str(datetime.datetime.now())[0:-7].replace(' ', '').replace('-', '').replace(':', '')
         if len(request.FILES) != 0:

@@ -23,6 +23,7 @@ class Profile(models.Model):
 class Product(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
     bookname = models.CharField(max_length=100, null=True)
+    category = models.CharField(max_length=100, null=True)
     price = models.IntegerField()
     image = models.ImageField(blank=True, null=True, upload_to='static/images')
     uploadid = models.CharField(max_length=100, null=True)
