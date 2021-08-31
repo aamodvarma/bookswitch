@@ -37,6 +37,12 @@ def academic(request):
 
 
 @csrf_exempt
+def academic_slider(request):
+    products = Product.objects.filter(category='academic')
+    context = {'products': products}
+    return render(request, 'store/academic_slider.html', context)
+
+@csrf_exempt
 def productdetails(request, uploadid):
     product = Product.objects.get(uploadid=uploadid)
     return render(request, 'store/product.html', {'product': product})

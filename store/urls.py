@@ -14,6 +14,7 @@ urlpatterns = [
     path('fiction', views.fiction, name="fiction"),
     path('fiction_slider', views.fiction_slider, name="fiction_slider"),
     path('academic', views.academic, name="academic"),
+    path('academic_slider', views.academic_slider, name="academic_slider"),
     path('delete/<int:uploadid>', views.delete_book, name="delete_book"),
 
 ]
