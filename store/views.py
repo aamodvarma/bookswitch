@@ -155,7 +155,7 @@ def register(request):
     else:
         products = Product.objects.filter(owner__user=request.user)
         context = {'products': products}
-        return render(request, 'store/dashboard.html', context)
+        return redirect('dashboard.html')
 
 @csrf_exempt
 def delete_book(request, uploadid):
