@@ -28,7 +28,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['localhost']
 else:
-    ALLOWED_HOSTS = ['139.59.68.238', 'www.ajrv.me', 'ajrv.me']
+    ALLOWED_HOSTS = ['139.59.68.238', 'bookswitch.ajrv.me', 'www.bookswitch.ajrv.me']
 
 
 
