@@ -26,6 +26,7 @@ class Product(models.Model):
     category = models.CharField(max_length=100, null=True)
     price = models.IntegerField()
     image = models.ImageField(blank=True, null=True, upload_to='static/images')
+    image_alt = models.CharField(max_length=100, null=True)
     uploadid = models.CharField(max_length=100, null=True)
 
     def __str__(self):

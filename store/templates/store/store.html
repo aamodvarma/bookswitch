@@ -28,7 +28,12 @@
     {% for product in products %}
           <div class="col-lg-3">
                 <div class="card box-element">
-                        <img src="/static/{{ product.imageURL}}" alt="" class="index_image">
+                        {% if  product.image  %}
+                        <img src="/static/{{ product.imageURL}}" class="index_image">
+                        {% else %}
+                        <img src="{{ product.image_alt}}"  class="index_image">
+                        {%  endif %}
+
                         <h1 class='bookname'>{{product.bookname}}</h1>
                     <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>
                     <br>
