@@ -8,7 +8,15 @@
             <div class="row g-0">
                 <div class="col-md-6 border-end">
                     <div class="d-flex flex-column justify-content-center">
-                        <div class="main_image"><img src="/static/{{ product.imageURL}}" alt="" class="index_image" width="350"> </div>
+                        <div class="main_image">
+
+                            {% if  product.image  %}
+                            <img src="/static/{{ product.imageURL}}" class="index_image" width="350">
+                            {% else %}
+                            <img src="{{ product.image_alt}}"  class="index_image" width="350">
+                            {%  endif %}
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
