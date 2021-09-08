@@ -6,11 +6,13 @@ from django.contrib.auth import authenticate, login, logout
 import datetime
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
-
+from tablib import Dataset
 
 # Create your views here.
 @csrf_exempt
 def store(request):
+    print(request.user.id)
+
     products = Product.objects.all()
     context = {'products': products}
 
@@ -114,10 +116,13 @@ def loginpage(request):
 @csrf_exempt
 def logoutuser(request):
     logout(request)
+
     return redirect('loginpage')
+
 
 @csrf_exempt
 def register(request):
+
     if not request.user.is_authenticated:
         #    user_form = ProfileForm(request.POST)
         #    if request.method == "POST":

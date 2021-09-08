@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xug5)p4*a1x^6a5)c_h-m*tbaxxdkl(9ycd201nna_ysux48l)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['localhost']
 else:
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -129,9 +130,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 STATIC_URL = '/static/'
 
 # Default primary key field type

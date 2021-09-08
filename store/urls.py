@@ -17,4 +17,5 @@ urlpatterns = [
     path('academic_slider', views.academic_slider, name="academic_slider"),
     path('delete/<int:uploadid>', views.delete_book, name="delete_book"),
 
+
 ]
