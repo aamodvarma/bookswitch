@@ -1,7 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-
-{% load static %}
 <html lang="en">
 
 <head>
@@ -12,6 +10,10 @@
 
     <!-- Custom CSS file -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product.css'%}">
+
     <script  type="application/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>{% block title %}{% endblock %}</title>
@@ -19,32 +21,62 @@
 
 
 {% if products %}
-<body>
-<div class="container">
+<body style="background:#f8f6f8">
+<div style="margin-top: 50px;margin-right: 100px; margin-left: 100px;">
 
 
     <div class="row">
 
-    {% for product in products %}
-          <div class="col-lg-3">
-                <div class="card box-element">
-
-                        {% if  product.image  %}
-                        <img src="/static/{{ product.imageURL}}" class="index_image">
-                        {% else %}
-                        <img src="{{ product.image_alt}}"  class="index_image">
-                        {%  endif %}
-
-                        <h1 class='bookname'>{{product.bookname}}</h1>
-                    <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>
-                    <br>
-                        <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>
-                    <a href="{% url 'productdetails' product.uploadid %}">
-                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:#05FF9A">Get Book</button>
-                    </a>
+{#    {% for product in products %}#}
+{#          <div class="col-lg-3">#}
+{#                <div class="card box-element">#}
+{##}
+{#                        {% if  product.image  %}#}
+{#                        <img src="/static/{{ product.imageURL}}" class="index_image">#}
+{#                        {% else %}#}
+{#                        <img src="{{ product.image_alt}}"  class="index_image">#}
+{#                        {%  endif %}#}
+{##}
+{#                        <h1 class='bookname'>{{product.bookname}}</h1>#}
+{#                    <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>#}
+{#                    <br>#}
+{#                        <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>#}
+{#                    <a href="{% url 'productdetails' product.uploadid %}">#}
+{#                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:#05FF9A">Get Book</button>#}
+{#                    </a>#}
+{#                </div>#}
+{#          </div>#}
+{##}
+{#    {% endfor %}#}
+    {%  for product in products %}
+          <div class="el-wrapper">
+            <div class="box-up">
+                    {% if  product.image  %}
+                    <img src="/static/{{ product.imageURL}}" class="img">
+                    {% else %}
+                    <img src="{{ product.image_alt}}"  class="img">
+                    {%  endif %}
+              <div class="img-info">
+                <div class="info-inner">
+                  <span class="p-name">{{ product.bookname }}</span>
+                  <span class="p-company">given by {{ product.owner }}</span>
                 </div>
-          </div>
+              </div>
+            </div>
 
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+
+              <a class="cart" href="{% url 'productdetails' product.uploadid %}">
+                <span class="price">{{ product.price }} AED</span>
+                <span class="add-to-cart">
+                  <span class="txt">Get Book</span>
+                </span>
+              </a>
+            </div>
+      </div>
     {% endfor %}
 
     </div>
