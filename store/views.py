@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 from .models import *
 from .forms import UserForm
 from django.contrib.auth import authenticate, login, logout
@@ -11,17 +12,55 @@ from tablib import Dataset
 # Create your views here.
 @csrf_exempt
 def store(request):
-    print(request.user.id)
+    context = {}
+    query = ""
+    if request.GET:
+        query = request.GET['q']
+        print(query)
+        context['query'] = str(query)
 
-    products = Product.objects.all()
-    context = {'products': products}
 
+    products = list(get_book(query))
+    context['products'] = products
     return render(request, 'store/store.html', context)
+
+
+@csrf_exempt
+def get_book(query=None, filters=None):
+    queryset = []
+    queries = query.split(" ")
+    if filters:
+        for q in queries:
+            books = Product.objects.filter(
+                Q(bookname__icontains=q),
+                category = filters
+            ).distinct()
+            for book in books:
+                queryset.append(book)
+            return list((queryset))
+    else:
+        for q in queries:
+            books = Product.objects.filter(
+                Q(bookname__icontains=q)
+            ).distinct()
+            for book in books:
+                queryset.append(book)
+            return list((queryset))
 
 @csrf_exempt
 def fiction(request):
-    products = Product.objects.filter(category='fiction')
-    context = {'products': products}
+    context = {}
+    query = ""
+    if request.GET:
+        query = request.GET['q']
+        print(query)
+        context['query'] = str(query)
+
+
+    products = list(get_book(query, "fiction"))
+
+    context['products'] = products
+
     return render(request, 'store/fiction.html', context)
 
 @csrf_exempt
@@ -32,9 +71,21 @@ def fiction_slider(request):
 
 @csrf_exempt
 def academic(request):
-    products = Product.objects.filter(category='academic')
-    context = {'products': products}
+
+    context = {}
+    query = ""
+    if request.GET:
+        query = request.GET['q']
+        print(query)
+        context['query'] = str(query)
+
+
+    products = list(get_book(query, "academic"))
+
+    context['products'] = products
+
     return render(request, 'store/academic.html', context)
+
 
 
 

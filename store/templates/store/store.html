@@ -21,66 +21,85 @@
 
 
 {% if products %}
-<body style="background:#f8f6f8">
-<div style="margin-top: 50px;margin-right: 100px; margin-left: 100px;">
+<body style="background:#f8f6f8;">
 
 
-    <div class="row">
+<div class="container-fluid" >
 
-{#    {% for product in products %}#}
-{#          <div class="col-lg-3">#}
-{#                <div class="card box-element">#}
-{##}
-{#                        {% if  product.image  %}#}
-{#                        <img src="/static/{{ product.imageURL}}" class="index_image">#}
-{#                        {% else %}#}
-{#                        <img src="{{ product.image_alt}}"  class="index_image">#}
-{#                        {%  endif %}#}
-{##}
-{#                        <h1 class='bookname'>{{product.bookname}}</h1>#}
-{#                    <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>#}
-{#                    <br>#}
-{#                        <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>#}
-{#                    <a href="{% url 'productdetails' product.uploadid %}">#}
-{#                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:#05FF9A">Get Book</button>#}
-{#                    </a>#}
-{#                </div>#}
-{#          </div>#}
-{##}
-{#    {% endfor %}#}
-    {%  for product in products %}
-          <div class="el-wrapper">
-            <div class="box-up">
-                    {% if  product.image  %}
-                    <img src="/static/{{ product.imageURL}}" class="img">
-                    {% else %}
-                    <img src="{{ product.image_alt}}"  class="img">
-                    {%  endif %}
-              <div class="img-info">
-                <div class="info-inner">
-                  <span class="p-name">{{ product.bookname }}</span>
-                  <span class="p-company">given by {{ product.owner }}</span>
+
+
+    <div style="margin-top: 50px;margin-right: 100px; margin-left: 100px;">
+
+        <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form>
+                        <label for="search">Search</label>
+                        <input id="search" name='q' type="search" pattern=".*\S.*" required>
+                        <span class="caret"></span>
+                    </form>
                 </div>
               </div>
-            </div>
+        </nav>
 
-            <div class="box-down">
-              <div class="h-bg">
-                <div class="h-bg-inner"></div>
-              </div>
 
-              <a class="cart" href="{% url 'productdetails' product.uploadid %}">
-                <span class="price">{{ product.price }} AED</span>
-                <span class="add-to-cart">
-                  <span class="txt">Get Book</span>
-                </span>
-              </a>
-            </div>
-      </div>
-    {% endfor %}
 
+        <div class="row">
+
+    {#    {% for product in products %}#}
+    {#          <div class="col-lg-3">#}
+    {#                <div class="card box-element">#}
+    {##}
+    {#                        {% if  product.image  %}#}
+    {#                        <img src="/static/{{ product.imageURL}}" class="index_image">#}
+    {#                        {% else %}#}
+    {#                        <img src="{{ product.image_alt}}"  class="index_image">#}
+    {#                        {%  endif %}#}
+    {##}
+    {#                        <h1 class='bookname'>{{product.bookname}}</h1>#}
+    {#                    <span><small style="margin-left: 20px; color: grey; font-size: 14px">given by {{ product.owner}}</small></span>#}
+    {#                    <br>#}
+    {#                        <p class="price" style="font-size: 15px; margin-left: 20px">{{ product.price }} AED</p>#}
+    {#                    <a href="{% url 'productdetails' product.uploadid %}">#}
+    {#                        <button data-product="{{ product.uploadid }}"  data-action="go" class="btn btn-outline-secondary add-btn gotoproduct" style="background-color:#05FF9A">Get Book</button>#}
+    {#                    </a>#}
+    {#                </div>#}
+    {#          </div>#}
+    {##}
+    {#    {% endfor %}#}
+        {%  for product in products %}
+              <div class="el-wrapper">
+                <div class="box-up">
+                        {% if  product.image  %}
+                        <img src="/static/{{ product.imageURL}}" class="img">
+                        {% else %}
+                        <img src="{{ product.image_alt}}"  class="img">
+                        {%  endif %}
+                  <div class="img-info">
+                    <div class="info-inner">
+                      <span class="p-name">{{ product.bookname }}</span>
+                      <span class="p-company">given by {{ product.owner }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="box-down">
+                  <div class="h-bg">
+                    <div class="h-bg-inner"></div>
+                  </div>
+
+                  <a class="cart" href="{% url 'productdetails' product.uploadid %}">
+                    <span class="price">{{ product.price }} AED</span>
+                    <span class="add-to-cart">
+                      <span class="txt">Get Book</span>
+                    </span>
+                  </a>
+                </div>
+          </div>
+        {% endfor %}
+
+        </div>
     </div>
-</div>
 
     <script>
         var updateBtns = document.getElementsByClassName('gotoproduct')
@@ -117,16 +136,8 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-</body>
 
-{% else %}
-<body>
-<div class="bgimg">
-  <div class="middle">
-      <h1>No Books Yet</h1>
-      <hr>
-  </div>
-</div>
+
 
 
 
@@ -136,42 +147,82 @@
       height: 100%
     }
 
-.bgimg {
-  /* Background image */
-  /* Full-screen */
-  height: 100%;
-  /* Center the background image */
-  background-position: center;
-    background-color: white;
-  /* Scale and zoom in the image */
-  background-size: cover;
-  /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
-  position: relative;
-  /* Add a white text color to all elements inside the .bgimg container */
-  color: grey;
-  /* Add a font */
-  font-family: "Courier New", Courier, monospace;
-  /* Set the font-size to 25 pixels */
-  font-size: 25px;
-}
 
-
-    /* Position text in the middle */
-    .middle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    /* Style the <hr> element */
-    hr {
-      margin: auto;
-      width: 70%;
-    }
     </style>
 
+
+</div>
 </body>
+
+
+{% else %}
+
+    <body style="display: block; background-color:#f8f6f8">
+
+
+    {% if query %}
+
+    <div class="container-fluid" >
+        <div style="margin-top: 50px;margin-right: 100px; margin-left: 100px;">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <form>
+                            <label for="search">Search</label>
+                            <input id="search" name='q' type="search" pattern=".*\S.*" required>
+                            <span class="caret"></span>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="bgimg">
+        <div class="middle">
+            {% if query %}
+                <h1>No Book found with name {{ query }}</h1>
+            {% else %}
+                <h1>No Books Yet</h1>
+            {% endif %}
+            <hr>
+        </div>
+    </div>
+    <style>
+
+        .middle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        hr {
+            margin: auto;
+            width: 70%;
+        }
+        .bgimg {
+            /* Background image */
+            /* Full-screen */
+            height: 100%;
+            /* Center the background image */
+            background-position: center;
+            /* Scale and zoom in the image */
+            background-size: cover;
+            /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+            position: relative;
+            /* Add a white text color to all elements inside the .bgimg container */
+            color: grey;
+            /* Add a font */
+            font-family: "Courier New", Courier, monospace;
+            /* Set the font-size to 25 pixels */
+            font-size: 25px;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    </body>
 
 {% endif %}
