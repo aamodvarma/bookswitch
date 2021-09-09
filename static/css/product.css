@@ -285,13 +285,29 @@ body, html {
 
 
 
-
-
- input {
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--bg: #e3e4e8;
+	--fg: #17181c;
+	--input: #ffffff;
+	--primary: #255ff4;
+	--dur: 1s;
+	font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1280 - 320));
+}
+body, input {
 	color: var(--fg);
 	font: 1em/1.5 Hind, sans-serif;
 }
-
+body {
+	background: var(--bg);
+	display: flex;
+	height: 100vh;
+}
 form, input, .caret {
 	margin: auto;
 }
@@ -360,9 +376,9 @@ label {
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bg: #17181c;
-		--fg: #e3e4e8;
+		--fg: #56ca76;
 		--input: #2e3138;
-		--primary: #5583f6;
+		--primary: #32cb71;
 	}
 }
 
@@ -413,13 +429,6 @@ label {
 		transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
 	}
 }
-
-
-
-
-
-
-
 
 
 
