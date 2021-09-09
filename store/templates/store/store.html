@@ -31,11 +31,17 @@
     <div style="margin-top: 50px;margin-right: 100px; margin-left: 100px;">
 
         <nav class="navbar navbar-expand-lg">
+
+
               <div class="container-fluid">
+
+                  {% if query %}
+                  <a class=" " aria-current="page" href="{% url 'store' %}"><img style="height:70px; width: 70px; text-align: center" src="https://icons.iconarchive.com/icons/praveen/minimal-outline/256/back-icon.png"></a>
+                  {% endif %}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <form>
                         <label for="search">Search</label>
-                        <input id="search" name='q' type="search" pattern=".*\S.*" required>
+                        <input id="search" name='q' type="search" pattern=".*\S.*">
                         <span class="caret"></span>
                     </form>
                 </div>
@@ -169,7 +175,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <form>
                             <label for="search">Search</label>
-                            <input id="search" name='q' type="search" pattern=".*\S.*" required>
+                            <input id="search" name='q' type="search" pattern=".*\S.*">
                             <span class="caret"></span>
                         </form>
                     </div>

@@ -1,6 +1,17 @@
 {% extends 'store/main.html' %}
 {% load static %}
+{% block backbutton %}
+
+    <div class="backoval">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'store' %}"><div> <img style="height:70px; width: 70px; text-align: center" src="https://icons.iconarchive.com/icons/praveen/minimal-outline/256/back-icon.png"></div></a>
+        </li>
+    </div>
+
+{% endblock %}
+
 {% block content %}
+
 
 <div class="main_container">
     <div class="container mt-5 mb-5">
