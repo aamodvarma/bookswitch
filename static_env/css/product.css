@@ -165,7 +165,6 @@ body, html {
   /* ease-out */
   position: absolute;
   width: 100%;
-  bottom: 25px;
 }
 
 .info-inner .p-name,
