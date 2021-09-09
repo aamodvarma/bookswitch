@@ -35,7 +35,7 @@ body, html {
 }
 
 .el-wrapper {
-  width: 360px;
+  width: 300px;
   padding: 15px;
   margin: 15px auto;
   background-color: #fff;
@@ -43,7 +43,7 @@ body, html {
 
 @media (max-width: 991px) {
   .el-wrapper {
-    width: 345px;
+    width: 35px;
   }
 }
 
