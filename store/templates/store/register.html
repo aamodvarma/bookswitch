@@ -115,7 +115,8 @@
 					</form>
 				</div>
 
-                {{ form.errors }}
+                {{ form.username.errors }}
+                {{ form.password2.errors }}
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Already have an account? <a href="{% url 'loginpage' %}" class="ml-2">Login</a>

@@ -154,7 +154,6 @@ def loginpage(request):
                 return redirect('dashboard')
             else:
                 messages.info(request, "Username OR Password is incorrect")
-                print()
         context = {}
         return render(request, 'store/login.html')
 
