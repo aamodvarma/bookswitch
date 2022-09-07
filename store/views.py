@@ -104,21 +104,22 @@ def productdetails(request, uploadid):
 def shipping(request):
     if  request.user.is_authenticated:
 
-        shipping = ShippingAddress()
-        valid = ShippingAddress.objects.filter(customer=request.user.profile)
-        if valid:
-            return redirect('store')
-        else:
-            if request.method == "POST":
-                shipping.customer = request.user.profile
-                shipping.address = request.POST.get('address')
-                shipping.city = request.POST.get('city')
-                shipping.zipcode = request.POST.get('zipcode')
-                shipping.save()
-                return redirect('store')
-            return render(request, 'store/shipping.html')
+        # shipping = ShippingAddress()
+        # valid = ShippingAddress.objects.filter(customer=request.user.profile)
+        # if valid:
+        #     return redirect('store')
+        # else:
+        #     if request.method == "POST":
+        #         shipping.customer = request.user.profile
+        #         shipping.address = request.POST.get('address')
+        #         shipping.city = request.POST.get('city')
+        #         shipping.zipcode = request.POST.get('zipcode')
+        #         shipping.save()
+        #         return redirect('store')
+        return render(request, 'store/shipping.html')
     else:
-        return redirect('login')
+        return redirect('loginpage')
+
 
 
 @csrf_exempt
