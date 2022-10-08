@@ -1,9 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
 urlpatterns = [
-        path('', views.getData),
-        path('delete/<int:uploadid>/', views.deleteProduct),
-        path('add/', views.addProduct)
+        path('products/', views.ProductList.as_view()),
+        path('products/<int:pk>/', views.ProductDetail.as_view()),
+        path('shipping/', views.ShippingList.as_view()),
+        path('users/', views.UserList.as_view()),
+        path('users/<int:pk>/', views.UserDetail.as_view()),
+        path('auth/', include('rest_framework.urls')),
         ]
+
